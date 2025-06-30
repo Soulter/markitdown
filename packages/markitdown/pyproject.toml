@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "markitdown"
+name = "markitdown-no-magika"
 dynamic = ["version"]
 description = 'Utility tool for converting various files to Markdown'
 readme = "README.md"
@@ -27,10 +27,8 @@ dependencies = [
   "beautifulsoup4",
   "requests",
   "markdownify",
-  "magika~=0.6.1",
   "charset-normalizer",
   "defusedxml",
-  "onnxruntime<=1.20.1; sys_platform == 'win32'",
 ]
 
 [project.optional-dependencies]
@@ -65,10 +63,10 @@ Issues = "https://github.com/microsoft/markitdown/issues"
 Source = "https://github.com/microsoft/markitdown"
 
 [tool.hatch.version]
-path = "src/markitdown/__about__.py"
+path = "src/markitdown_no_magika/__about__.py"
 
 [project.scripts]
-markitdown = "markitdown.__main__:main"
+markitdown = "markitdown_no_magika.__main__:main"
 
 [tool.hatch.envs.default]
 features = ["all"]
@@ -87,18 +85,18 @@ extra-dependencies = [
 ]
 
 [tool.hatch.envs.types.scripts]
-check = "mypy --install-types --non-interactive --ignore-missing-imports {args:src/markitdown tests}"
+check = "mypy --install-types --non-interactive --ignore-missing-imports {args:src/markitdown_no_magika tests}"
 
 [tool.coverage.run]
 source_pkgs = ["markitdown", "tests"]
 branch = true
 parallel = true
 omit = [
-  "src/markitdown/__about__.py",
+  "src/markitdown_no_magika/__about__.py",
 ]
 
 [tool.coverage.paths]
-markitdown = ["src/markitdown", "*/markitdown/src/markitdown"]
+markitdown = ["src/markitdown_no_magika", "*/markitdown/src/markitdown_no_magika"]
 tests = ["tests", "*/markitdown/tests"]
 
 [tool.coverage.report]
@@ -109,4 +107,4 @@ exclude_lines = [
 ]
 
 [tool.hatch.build.targets.sdist]
-only-include = ["src/markitdown"]
+only-include = ["src/markitdown_no_magika"]
